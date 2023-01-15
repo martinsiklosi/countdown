@@ -9,6 +9,8 @@ cdef tuple add(tuple exp1, tuple exp2, int con):
     return (exp, val, con,)
 
 cdef tuple multiply(tuple exp1, tuple exp2, int con):
+    if exp1[1] == 1 or exp2[1] == 1:
+        return ("", 0, 0b0,)
     cdef int val = exp1[1] * exp2[1]
     cdef str exp = f"{exp1[0]}*{exp2[0]}"
     return (exp, val, con,)
@@ -21,6 +23,8 @@ cdef tuple subtract(tuple exp1, tuple exp2, int con):
     return (exp, val, con,)
 
 cdef tuple divide(tuple exp1, tuple exp2, int con):
+    if exp2[1] == 1:
+        return ("", 0, 0b0,)
     if exp1[1] % exp2[1] != 0:
         return ("", 0, 0b0,)
     cdef int val = exp1[1] // exp2[1]
@@ -39,7 +43,7 @@ cdef list valid_combs(tuple exp1, tuple exp2, set id_set):
         divide(exp1, exp2, con)
     )
     for comb in combs:
-        if comb[0]:
+        if comb[2]:
             if create_id(comb[1], comb[2]) not in id_set:
                 output.append(comb)
     return output
