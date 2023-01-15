@@ -23,13 +23,14 @@ cdef tuple subtract(tuple exp1, tuple exp2, int con):
 cdef tuple divide(tuple exp1, tuple exp2, int con):
     if exp1[1] % exp2[1] != 0:
         return ("", 0, 0b0,)
-    cdef int val = exp1[1] / exp2[1]
+    cdef int val = exp1[1] // exp2[1]
     cdef str exp = f"{exp1[0]}/({exp2[0]})"
     return (exp, val, con,)
 
 cdef list valid_combs(tuple exp1, tuple exp2, set id_set):
     cdef list output = []
     cdef int con
+    cdef tuple combs, comb
     con = exp1[2] | exp2[2]
     combs = (
         add(exp1, exp2, con),
@@ -48,6 +49,7 @@ cdef int create_id(int val, int con):
 
 cdef list add_perms(list v1, list v2, set id_set):
     cdef list output = []
+    cdef tuple exp1, exp2, perm
     for exp1 in v1:
         for exp2 in v2:
             if not exp1[2] & exp2[2]:
@@ -75,6 +77,7 @@ def run_numbers():
     ]
     id_set = set([create_id(exp[1], exp[2]) for exp in exp_sets[0]])
 
+    cdef int i
     for i in range(6):
         print(f"length {i+1}: ", end="")
         for j in range(i):
@@ -82,20 +85,21 @@ def run_numbers():
         print(f"{len(exp_sets[i])} perms")
 
     cdef list exps = []
+    cdef list v
     for v in exp_sets:
         exps.extend(v)
     print(f"total: {len(exps)} perms")
 
-
     exps.sort(key=lambda exp: abs(n - exp[1]))
-    best_exp = exps[0]
+    cdef tuple best_exp = exps[0]
 
     print(f"time: {perf_counter() - before:.2f}s")
 
-    output = ""
-    for char in best_exp[0]:
-        if char.isalpha():
-            output += str(eval(char))
+    cdef str output = ""
+    cdef str car
+    for car in best_exp[0]:
+        if car.isalpha():
+            output += str(eval(car))
         else:
-            output += char
+            output += car
     print(f"{output} = {round(best_exp[1])}")
