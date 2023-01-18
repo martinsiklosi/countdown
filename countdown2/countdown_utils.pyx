@@ -63,7 +63,26 @@ cdef list add_perms(list v1, list v2, set id_set):
                             id_set.add(my_id)
     return output
 
+
+cdef class MyNode():
+    def __init__(self, l, r, int i):
+        self.l = l
+        self.r = r
+        self.i = i
+
 def run_numbers():
+    cdef list nodes = [MyNode(None, None, i) for i in range(1000)]
+    cdef list strings = [f"struff {i}" for i in range(1000)]
+
+    n_bef = perf_counter()
+    cdef list node_combs = []
+    cdef MyNode n1, n2
+    for n1 in nodes:
+        for n2 in nodes:
+
+
+
+def run_numbers1():
     print("a,b,c,d,e,f = ", end="")
     cdef int a, b, c, d, e, f, n
     a, b, c, d, e, f = map(int, re.split(r" , |, | ,|,|  | ",input()))
