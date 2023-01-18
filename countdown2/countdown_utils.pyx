@@ -16,9 +16,9 @@ cdef tuple multiply(tuple exp1, tuple exp2, int con):
     return (exp, val, con,)
 
 cdef tuple subtract(tuple exp1, tuple exp2, int con):
-    cdef int val = exp1[1] - exp2[1]
-    if val <= 0:
+    if exp2[1] >= exp1[1]:
         return ("", 0, 0b0,)
+    cdef int val = exp1[1] - exp2[1]
     cdef str exp = f"({exp1[0]}-{exp2[0]})"
     return (exp, val, con,)
 
@@ -31,10 +31,11 @@ cdef tuple divide(tuple exp1, tuple exp2, int con):
     cdef str exp = f"{exp1[0]}/({exp2[0]})"
     return (exp, val, con,)
 
-cdef list valid_combs(tuple exp1, tuple exp2, set id_set):
-    cdef list output = []
+cdef tuple valid_combs(tuple exp1, tuple exp2):
     cdef int con
-    cdef tuple combs, comb
+    cdef tuple combs
+    cdef tuple comb
+    cdef int my_id
     con = exp1[2] | exp2[2]
     combs = (
         add(exp1, exp2, con),
@@ -42,11 +43,7 @@ cdef list valid_combs(tuple exp1, tuple exp2, set id_set):
         subtract(exp1, exp2, con),
         divide(exp1, exp2, con)
     )
-    for comb in combs:
-        if comb[2]:
-            if create_id(comb[1], comb[2]) not in id_set:
-                output.append(comb)
-    return output
+    return combs
 
 cdef int create_id(int val, int con):
     return val << 6 + con
@@ -57,9 +54,13 @@ cdef list add_perms(list v1, list v2, set id_set):
     for exp1 in v1:
         for exp2 in v2:
             if not exp1[2] & exp2[2]:
-                output.extend(valid_combs(exp1, exp2, id_set))
-                for perm in output:
-                    id_set.add(create_id(perm[1], perm[2]))
+                new_combs = valid_combs(exp1, exp2)
+                for comb in new_combs:
+                    if comb[2]:
+                        my_id = create_id(comb[1], comb[2])
+                        if my_id not in id_set:
+                            output.append(comb)
+                            id_set.add(my_id)
     return output
 
 def run_numbers():
@@ -97,7 +98,8 @@ def run_numbers():
     exps.sort(key=lambda exp: abs(n - exp[1]))
     cdef tuple best_exp = exps[0]
 
-    print(f"time: {perf_counter() - before:.2f}s")
+    after = perf_counter()
+    print(f"time: {(after-before)*1000:.0f}ms")
 
     cdef str output = ""
     cdef str car
