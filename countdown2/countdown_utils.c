@@ -2558,9 +2558,9 @@ static PyObject *__pyx_f_15countdown_utils_divide(PyObject *__pyx_v_exp1, PyObje
  */
 
 static PyObject *__pyx_f_15countdown_utils_useful_combs(PyObject *__pyx_v_exp1, PyObject *__pyx_v_exp2) {
+  PyObject *__pyx_v_methods = 0;
   int __pyx_v_con;
   PyObject *__pyx_v_output = 0;
-  PyObject *__pyx_v_methods = 0;
   PyObject *__pyx_v_method = NULL;
   PyObject *__pyx_v_comb = NULL;
   PyObject *__pyx_r = NULL;
@@ -2568,9 +2568,9 @@ static PyObject *__pyx_f_15countdown_utils_useful_combs(PyObject *__pyx_v_exp1, 
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
+  PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_6;
   Py_ssize_t __pyx_t_7;
   PyObject *__pyx_t_8 = NULL;
   int __pyx_t_9;
@@ -2583,155 +2583,155 @@ static PyObject *__pyx_f_15countdown_utils_useful_combs(PyObject *__pyx_v_exp1, 
   /* "countdown_utils.pyx":36
  *     '''Returns the useful combinations of two expressions.
  *     Non-useful combinations are returned with a id 0.'''
- *     cdef int con = exp1[2] + exp2[2]             # <<<<<<<<<<<<<<
+ *     cdef tuple methods = (add, multiply, subtract, divide)             # <<<<<<<<<<<<<<
+ *     cdef int con = exp1[2] + exp2[2]
  *     cdef list output = []
- *     cdef tuple methods = (add, multiply, subtract, divide)
  */
-  if (unlikely(__pyx_v_exp1 == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 36, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_exp1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(__pyx_v_exp2 == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 36, __pyx_L1_error)
-  }
-  __pyx_t_2 = __Pyx_GetItemInt_Tuple(__pyx_v_exp2, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_multiply); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_subtract); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_con = __pyx_t_4;
+  __pyx_t_4 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_divide); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_3 = 0;
+  __pyx_t_4 = 0;
+  __pyx_v_methods = ((PyObject*)__pyx_t_5);
+  __pyx_t_5 = 0;
 
   /* "countdown_utils.pyx":37
  *     Non-useful combinations are returned with a id 0.'''
- *     cdef int con = exp1[2] + exp2[2]
- *     cdef list output = []             # <<<<<<<<<<<<<<
  *     cdef tuple methods = (add, multiply, subtract, divide)
+ *     cdef int con = exp1[2] + exp2[2]             # <<<<<<<<<<<<<<
+ *     cdef list output = []
  *     for method in methods:
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (unlikely(__pyx_v_exp1 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 37, __pyx_L1_error)
+  }
+  __pyx_t_5 = __Pyx_GetItemInt_Tuple(__pyx_v_exp1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (unlikely(__pyx_v_exp2 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    __PYX_ERR(0, 37, __pyx_L1_error)
+  }
+  __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_exp2, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = PyNumber_Add(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_con = __pyx_t_6;
+
+  /* "countdown_utils.pyx":38
+ *     cdef tuple methods = (add, multiply, subtract, divide)
+ *     cdef int con = exp1[2] + exp2[2]
+ *     cdef list output = []             # <<<<<<<<<<<<<<
+ *     for method in methods:
+ *         comb = method(exp1, exp2, con)
+ */
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_output = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "countdown_utils.pyx":38
+  /* "countdown_utils.pyx":39
  *     cdef int con = exp1[2] + exp2[2]
  *     cdef list output = []
- *     cdef tuple methods = (add, multiply, subtract, divide)             # <<<<<<<<<<<<<<
- *     for method in methods:
- *         comb = method(exp1, exp2, con)
- */
-  __pyx_t_3 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_add); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_multiply); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_subtract); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_CFunc_tuple____tuple____tuple____int___to_py(__pyx_f_15countdown_utils_divide); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_5);
-  PyTuple_SET_ITEM(__pyx_t_6, 3, __pyx_t_5);
-  __pyx_t_3 = 0;
-  __pyx_t_2 = 0;
-  __pyx_t_1 = 0;
-  __pyx_t_5 = 0;
-  __pyx_v_methods = ((PyObject*)__pyx_t_6);
-  __pyx_t_6 = 0;
-
-  /* "countdown_utils.pyx":39
- *     cdef list output = []
- *     cdef tuple methods = (add, multiply, subtract, divide)
  *     for method in methods:             # <<<<<<<<<<<<<<
  *         comb = method(exp1, exp2, con)
  *         if comb[2]:
  */
-  __pyx_t_6 = __pyx_v_methods; __Pyx_INCREF(__pyx_t_6); __pyx_t_7 = 0;
+  __pyx_t_3 = __pyx_v_methods; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
   for (;;) {
-    if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
+    if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_5); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
     #else
-    __pyx_t_5 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
     #endif
-    __Pyx_XDECREF_SET(__pyx_v_method, __pyx_t_5);
-    __pyx_t_5 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_method, __pyx_t_4);
+    __pyx_t_4 = 0;
 
     /* "countdown_utils.pyx":40
- *     cdef tuple methods = (add, multiply, subtract, divide)
+ *     cdef list output = []
  *     for method in methods:
  *         comb = method(exp1, exp2, con)             # <<<<<<<<<<<<<<
  *         if comb[2]:
  *             output.append(comb)
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_con); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_con); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
     __Pyx_INCREF(__pyx_v_method);
-    __pyx_t_2 = __pyx_v_method; __pyx_t_3 = NULL;
-    __pyx_t_4 = 0;
+    __pyx_t_2 = __pyx_v_method; __pyx_t_1 = NULL;
+    __pyx_t_6 = 0;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_3)) {
+      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+      if (likely(__pyx_t_1)) {
         PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_3);
+        __Pyx_INCREF(__pyx_t_1);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_2, function);
-        __pyx_t_4 = 1;
+        __pyx_t_6 = 1;
       }
     }
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
-      PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_exp1, __pyx_v_exp2, __pyx_t_1};
-      __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      PyObject *__pyx_temp[4] = {__pyx_t_1, __pyx_v_exp1, __pyx_v_exp2, __pyx_t_5};
+      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else
     #endif
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-      PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_exp1, __pyx_v_exp2, __pyx_t_1};
-      __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      PyObject *__pyx_temp[4] = {__pyx_t_1, __pyx_v_exp1, __pyx_v_exp2, __pyx_t_5};
+      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 40, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      if (__pyx_t_3) {
-        __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __pyx_t_3 = NULL;
+      if (__pyx_t_1) {
+        __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1); __pyx_t_1 = NULL;
       }
       __Pyx_INCREF(__pyx_v_exp1);
       __Pyx_GIVEREF(__pyx_v_exp1);
-      PyTuple_SET_ITEM(__pyx_t_8, 0+__pyx_t_4, __pyx_v_exp1);
+      PyTuple_SET_ITEM(__pyx_t_8, 0+__pyx_t_6, __pyx_v_exp1);
       __Pyx_INCREF(__pyx_v_exp2);
       __Pyx_GIVEREF(__pyx_v_exp2);
-      PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_4, __pyx_v_exp2);
-      __Pyx_GIVEREF(__pyx_t_1);
-      PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_4, __pyx_t_1);
-      __pyx_t_1 = 0;
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
+      PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_6, __pyx_v_exp2);
+      __Pyx_GIVEREF(__pyx_t_5);
+      PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_6, __pyx_t_5);
+      __pyx_t_5 = 0;
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_XDECREF_SET(__pyx_v_comb, __pyx_t_5);
-    __pyx_t_5 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_comb, __pyx_t_4);
+    __pyx_t_4 = 0;
 
     /* "countdown_utils.pyx":41
  *     for method in methods:
@@ -2740,10 +2740,10 @@ static PyObject *__pyx_f_15countdown_utils_useful_combs(PyObject *__pyx_v_exp1, 
  *             output.append(comb)
  *     return output
  */
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_comb, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 41, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_comb, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_9) {
 
       /* "countdown_utils.pyx":42
@@ -2765,14 +2765,14 @@ static PyObject *__pyx_f_15countdown_utils_useful_combs(PyObject *__pyx_v_exp1, 
     }
 
     /* "countdown_utils.pyx":39
+ *     cdef int con = exp1[2] + exp2[2]
  *     cdef list output = []
- *     cdef tuple methods = (add, multiply, subtract, divide)
  *     for method in methods:             # <<<<<<<<<<<<<<
  *         comb = method(exp1, exp2, con)
  *         if comb[2]:
  */
   }
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "countdown_utils.pyx":43
  *         if comb[2]:
@@ -2799,14 +2799,14 @@ static PyObject *__pyx_f_15countdown_utils_useful_combs(PyObject *__pyx_v_exp1, 
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("countdown_utils.useful_combs", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_output);
   __Pyx_XDECREF(__pyx_v_methods);
+  __Pyx_XDECREF(__pyx_v_output);
   __Pyx_XDECREF(__pyx_v_method);
   __Pyx_XDECREF(__pyx_v_comb);
   __Pyx_XGIVEREF(__pyx_r);
@@ -2926,7 +2926,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
  * cdef list add_permutations(list v1, list v2, set id_set, char n_variables):
  *     '''Returns all valid combinations of expressions in v1 and v2.'''
  *     cdef list output = []             # <<<<<<<<<<<<<<
- *     cdef tuple exp1, exp2, perm, new_combs, comb
+ *     cdef tuple exp1, exp2, comb
  *     cdef long long my_id
  */
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
@@ -2935,7 +2935,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
   __pyx_t_1 = 0;
 
   /* "countdown_utils.pyx":53
- *     cdef tuple exp1, exp2, perm, new_combs, comb
+ *     cdef tuple exp1, exp2, comb
  *     cdef long long my_id
  *     for exp1, exp2 in product(v1, v2):             # <<<<<<<<<<<<<<
  *         if exp1[2] & exp2[2]:
@@ -3235,7 +3235,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "countdown_utils.pyx":53
- *     cdef tuple exp1, exp2, perm, new_combs, comb
+ *     cdef tuple exp1, exp2, comb
  *     cdef long long my_id
  *     for exp1, exp2 in product(v1, v2):             # <<<<<<<<<<<<<<
  *         if exp1[2] & exp2[2]:

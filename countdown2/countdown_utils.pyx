@@ -33,9 +33,9 @@ cdef tuple divide(tuple exp1, tuple exp2, int con):
 cdef list useful_combs(tuple exp1, tuple exp2):
     '''Returns the useful combinations of two expressions.
     Non-useful combinations are returned with a id 0.'''
+    cdef tuple methods = (add, multiply, subtract, divide)
     cdef int con = exp1[2] + exp2[2]
     cdef list output = []
-    cdef tuple methods = (add, multiply, subtract, divide)
     for method in methods:
         comb = method(exp1, exp2, con)
         if comb[2]:
@@ -48,7 +48,7 @@ cdef long long create_id(tuple exp, char n_variables):
 cdef list add_permutations(list v1, list v2, set id_set, char n_variables):
     '''Returns all valid combinations of expressions in v1 and v2.'''
     cdef list output = []
-    cdef tuple exp1, exp2, perm, new_combs, comb
+    cdef tuple exp1, exp2, comb
     cdef long long my_id
     for exp1, exp2 in product(v1, v2):
         if exp1[2] & exp2[2]:
