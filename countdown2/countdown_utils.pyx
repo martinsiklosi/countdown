@@ -2,6 +2,7 @@
 #cython: profile=False
 import re
 import sys
+from itertools import product
 
 cdef tuple add(tuple exp1, tuple exp2, int con):
     cdef long val = exp1[1] + exp2[1]
@@ -29,34 +30,35 @@ cdef tuple divide(tuple exp1, tuple exp2, int con):
     cdef str exp = f"{exp1[0]}/({exp2[0]})"
     return (exp, val, con,)
 
-cdef tuple useful_combs(tuple exp1, tuple exp2):
+cdef list useful_combs(tuple exp1, tuple exp2):
     '''Returns the useful combinations of two expressions.
     Non-useful combinations are returned with a id 0.'''
     cdef int con = exp1[2] + exp2[2]
-    return (
-        add(exp1, exp2, con),
-        multiply(exp1, exp2, con),
-        subtract(exp1, exp2, con),
-        divide(exp1, exp2, con)
-    )
+    cdef list output = []
+    cdef tuple methods = (add, multiply, subtract, divide)
+    for method in methods:
+        comb = method(exp1, exp2, con)
+        if comb[2]:
+            output.append(comb)
+    return output
 
-cdef long long create_id(long val, int con, char n_vars):
-    return (val << n_vars) + con
+cdef long long create_id(tuple exp, char n_variables):
+    return (exp[1] << n_variables) + exp[2]
 
-cdef list add_perms(list v1, list v2, set id_set, char n_vars):
+cdef list add_permutations(list v1, list v2, set id_set, char n_variables):
     '''Returns all valid combinations of expressions in v1 and v2.'''
     cdef list output = []
     cdef tuple exp1, exp2, perm, new_combs, comb
     cdef long long my_id
-    for exp1 in v1:
-        for exp2 in v2:
-            if not exp1[2] & exp2[2]:
-                for comb in useful_combs(exp1, exp2):
-                    if comb[2]: # Checks if usefull
-                        my_id = create_id(comb[1], comb[2], n_vars)
-                        if my_id not in id_set:
-                            output.append(comb)
-                            id_set.add(my_id)
+    for exp1, exp2 in product(v1, v2):
+        if exp1[2] & exp2[2]:
+            continue
+        for comb in useful_combs(exp1, exp2):
+            my_id = create_id(comb, n_variables)
+            if my_id in id_set:
+                continue
+            output.append(comb)
+            id_set.add(my_id)
     return output
 
 def run_numbers():
@@ -66,30 +68,30 @@ def run_numbers():
     numbers = re.split(separators, input().strip())
     try:
         numbers = list(map(int, numbers))
-        n = int(input("target = "))
+        target = int(input("target = "))
     except ValueError:
         sys.exit("error: invalid input")
 
-    # Create list with base expression and set of uniqe id numbers for each expression
-    cdef char n_vars = len(numbers);
-    exp_sets = [[] for _ in numbers]
-    exp_sets[0] = [(f"{num}", num, 2**i) for i, num in enumerate(numbers)]
-    id_set = set([create_id(exp[1], exp[2], n_vars) for exp in exp_sets[0]])
+    # Generate base expressions
+    cdef char n_variables = len(numbers);
+    expression_sets = [[] for _ in numbers]
+    expression_sets[0] = [(f"{num}", num, 2**i) for i, num in enumerate(numbers)]
+    id_set = set([create_id(exp, n_variables) for exp in expression_sets[0]])
 
-    # Extend the list of expression
-    for i in range(n_vars):
+    # Find all useful combinations
+    for i in range(n_variables):
         for j in range(i):
-            exp_sets[i].extend(add_perms(
-                exp_sets[j], 
-                exp_sets[i-j-1], 
+            expression_sets[i].extend(add_permutations(
+                expression_sets[j], 
+                expression_sets[i-j-1], 
                 id_set,
-                n_vars
+                n_variables,
             ))
 
-    # Collect all expressions and pick the closest to target
-    exps = []
-    for v in exp_sets:
-        exps.extend(v)
-    exps.sort(key=lambda exp: abs(n - exp[1]))
-    best_exp = exps[0]
-    print(f"{best_exp[0]} = {round(best_exp[1])}")
+    # Print the best expression
+    expressions = []
+    for v in expression_sets:
+        expressions.extend(v)
+    expressions.sort(key=lambda exp: abs(target - exp[1]))
+    best_expression = expressions[0]
+    print(f"{best_expression[0]} = {round(best_expression[1])}")
