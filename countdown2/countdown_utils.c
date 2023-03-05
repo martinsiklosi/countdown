@@ -2901,7 +2901,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
   PyObject *__pyx_v_exp1 = 0;
   PyObject *__pyx_v_exp2 = 0;
   PyObject *__pyx_v_comb = 0;
-  PY_LONG_LONG __pyx_v_my_id;
+  PY_LONG_LONG __pyx_v_exp_id;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2927,7 +2927,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
  *     '''Returns all valid combinations of expressions in v1 and v2.'''
  *     cdef list output = []             # <<<<<<<<<<<<<<
  *     cdef tuple exp1, exp2, comb
- *     cdef long long my_id
+ *     cdef long long exp_id
  */
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2936,7 +2936,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
 
   /* "countdown_utils.pyx":53
  *     cdef tuple exp1, exp2, comb
- *     cdef long long my_id
+ *     cdef long long exp_id
  *     for exp1, exp2 in product(v1, v2):             # <<<<<<<<<<<<<<
  *         if exp1[2] & exp2[2]:
  *             continue
@@ -3082,7 +3082,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
     __pyx_t_3 = 0;
 
     /* "countdown_utils.pyx":54
- *     cdef long long my_id
+ *     cdef long long exp_id
  *     for exp1, exp2 in product(v1, v2):
  *         if exp1[2] & exp2[2]:             # <<<<<<<<<<<<<<
  *             continue
@@ -3113,12 +3113,12 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
  *         if exp1[2] & exp2[2]:
  *             continue             # <<<<<<<<<<<<<<
  *         for comb in useful_combs(exp1, exp2):
- *             my_id = create_id(comb, n_variables)
+ *             exp_id = create_id(comb, n_variables)
  */
       goto __pyx_L3_continue;
 
       /* "countdown_utils.pyx":54
- *     cdef long long my_id
+ *     cdef long long exp_id
  *     for exp1, exp2 in product(v1, v2):
  *         if exp1[2] & exp2[2]:             # <<<<<<<<<<<<<<
  *             continue
@@ -3130,8 +3130,8 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
  *         if exp1[2] & exp2[2]:
  *             continue
  *         for comb in useful_combs(exp1, exp2):             # <<<<<<<<<<<<<<
- *             my_id = create_id(comb, n_variables)
- *             if my_id in id_set:
+ *             exp_id = create_id(comb, n_variables)
+ *             if exp_id in id_set:
  */
     __pyx_t_5 = __pyx_f_15countdown_utils_useful_combs(__pyx_v_exp1, __pyx_v_exp2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -3156,20 +3156,20 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
       /* "countdown_utils.pyx":57
  *             continue
  *         for comb in useful_combs(exp1, exp2):
- *             my_id = create_id(comb, n_variables)             # <<<<<<<<<<<<<<
- *             if my_id in id_set:
+ *             exp_id = create_id(comb, n_variables)             # <<<<<<<<<<<<<<
+ *             if exp_id in id_set:
  *                 continue
  */
-      __pyx_v_my_id = __pyx_f_15countdown_utils_create_id(__pyx_v_comb, __pyx_v_n_variables);
+      __pyx_v_exp_id = __pyx_f_15countdown_utils_create_id(__pyx_v_comb, __pyx_v_n_variables);
 
       /* "countdown_utils.pyx":58
  *         for comb in useful_combs(exp1, exp2):
- *             my_id = create_id(comb, n_variables)
- *             if my_id in id_set:             # <<<<<<<<<<<<<<
+ *             exp_id = create_id(comb, n_variables)
+ *             if exp_id in id_set:             # <<<<<<<<<<<<<<
  *                 continue
  *             output.append(comb)
  */
-      __pyx_t_5 = __Pyx_PyInt_From_PY_LONG_LONG(__pyx_v_my_id); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyInt_From_PY_LONG_LONG(__pyx_v_exp_id); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       if (unlikely(__pyx_v_id_set == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
@@ -3181,28 +3181,28 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
       if (__pyx_t_12) {
 
         /* "countdown_utils.pyx":59
- *             my_id = create_id(comb, n_variables)
- *             if my_id in id_set:
+ *             exp_id = create_id(comb, n_variables)
+ *             if exp_id in id_set:
  *                 continue             # <<<<<<<<<<<<<<
  *             output.append(comb)
- *             id_set.add(my_id)
+ *             id_set.add(exp_id)
  */
         goto __pyx_L8_continue;
 
         /* "countdown_utils.pyx":58
  *         for comb in useful_combs(exp1, exp2):
- *             my_id = create_id(comb, n_variables)
- *             if my_id in id_set:             # <<<<<<<<<<<<<<
+ *             exp_id = create_id(comb, n_variables)
+ *             if exp_id in id_set:             # <<<<<<<<<<<<<<
  *                 continue
  *             output.append(comb)
  */
       }
 
       /* "countdown_utils.pyx":60
- *             if my_id in id_set:
+ *             if exp_id in id_set:
  *                 continue
  *             output.append(comb)             # <<<<<<<<<<<<<<
- *             id_set.add(my_id)
+ *             id_set.add(exp_id)
  *     return output
  */
       __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_output, __pyx_v_comb); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
@@ -3210,7 +3210,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
       /* "countdown_utils.pyx":61
  *                 continue
  *             output.append(comb)
- *             id_set.add(my_id)             # <<<<<<<<<<<<<<
+ *             id_set.add(exp_id)             # <<<<<<<<<<<<<<
  *     return output
  * 
  */
@@ -3218,7 +3218,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
         __PYX_ERR(0, 61, __pyx_L1_error)
       }
-      __pyx_t_5 = __Pyx_PyInt_From_PY_LONG_LONG(__pyx_v_my_id); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyInt_From_PY_LONG_LONG(__pyx_v_exp_id); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_13 = PySet_Add(__pyx_v_id_set, __pyx_t_5); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -3227,8 +3227,8 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
  *         if exp1[2] & exp2[2]:
  *             continue
  *         for comb in useful_combs(exp1, exp2):             # <<<<<<<<<<<<<<
- *             my_id = create_id(comb, n_variables)
- *             if my_id in id_set:
+ *             exp_id = create_id(comb, n_variables)
+ *             if exp_id in id_set:
  */
       __pyx_L8_continue:;
     }
@@ -3236,7 +3236,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
 
     /* "countdown_utils.pyx":53
  *     cdef tuple exp1, exp2, comb
- *     cdef long long my_id
+ *     cdef long long exp_id
  *     for exp1, exp2 in product(v1, v2):             # <<<<<<<<<<<<<<
  *         if exp1[2] & exp2[2]:
  *             continue
@@ -3247,7 +3247,7 @@ static PyObject *__pyx_f_15countdown_utils_add_permutations(PyObject *__pyx_v_v1
 
   /* "countdown_utils.pyx":62
  *             output.append(comb)
- *             id_set.add(my_id)
+ *             id_set.add(exp_id)
  *     return output             # <<<<<<<<<<<<<<
  * 
  * def run_numbers():

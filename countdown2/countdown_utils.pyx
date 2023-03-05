@@ -49,16 +49,16 @@ cdef list add_permutations(list v1, list v2, set id_set, char n_variables):
     '''Returns all valid combinations of expressions in v1 and v2.'''
     cdef list output = []
     cdef tuple exp1, exp2, comb
-    cdef long long my_id
+    cdef long long exp_id
     for exp1, exp2 in product(v1, v2):
         if exp1[2] & exp2[2]:
             continue
         for comb in useful_combs(exp1, exp2):
-            my_id = create_id(comb, n_variables)
-            if my_id in id_set:
+            exp_id = create_id(comb, n_variables)
+            if exp_id in id_set:
                 continue
             output.append(comb)
-            id_set.add(my_id)
+            id_set.add(exp_id)
     return output
 
 def run_numbers():
